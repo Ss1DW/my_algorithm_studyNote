@@ -1,6 +1,5 @@
 /*
  * @lc app=leetcode.cn id=11 lang=cpp
- *
  * [11] 盛最多水的容器
 
  *

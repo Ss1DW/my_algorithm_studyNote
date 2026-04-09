@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "commoncppproblem59.h"
-
 using namespace std;
 // @before-stub-for-debug-end
 
