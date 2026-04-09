@@ -7,7 +7,6 @@ using namespace std;
 // @before-stub-for-debug-end
 
 /*
-
  */
 
 // @lc code=start
