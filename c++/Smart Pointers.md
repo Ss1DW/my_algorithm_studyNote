@@ -63,3 +63,22 @@ e0 = sharedEntity;
 ```
 
 共享指针除了本身可以当做指针正常使用之外，还可以保证被共享指针的存活
+
+![image-20260410165801313](assets/image-20260410165801313.png)
+
+简单来说，若程序进行到B处，会发现没有执行sharedEntity的破坏器，因为e0依然在作用域中生效，使得sharedEntity不会自动执行delete。这件事底层原理用到了引用计数器，引用计数器在e0中被放置在单独的内存中，引用一次（e0），计数器为1，当计数器为0时才会自动执行delete
+
+假如我们不想要让e0保护sharedEntity的存活，只是把e0作为一个引用sharedEntity里面的方法的一个途径，无所谓sharedEntity是否存活，这个时候我们需要用到弱指针（weak pointer）
+
+**std::weak_ptr**
+
+weak_ptr属于共享指针的变种，所以只能复制共享指针的对象,所以我们执行：
+
+```c++
+std::weak_ptr<Entity> e0;
+e0= sharedEntity;
+```
+
+此时若程序进行到B位置，sharedEntity会直接自动delete。
+
+**很多人在学习智能指针后不再使用new和delete关键字，但是这两者并非完全一样，前者更简单，后者更灵活**
